@@ -35,7 +35,7 @@ export default {
     {
       // 사용자
       name: "userId",
-      title: "UserID",
+      title: "UserId",
       type: "string",
     },
     {
