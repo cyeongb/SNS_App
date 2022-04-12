@@ -5,11 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/login_logo.png";
 const Login = () => {
-
-const responseGoogle=(response)=>{
-  
-}
-
+  const responseGoogle = (response) => {
+    console.log("구글로그인 > ", response);
+  };
 
   return (
     <div className="flex justify-start items-center flex-col h-screen ">
@@ -24,12 +22,12 @@ const responseGoogle=(response)=>{
           autoplay="true"
         />
         <div className="flex flex-col absolute justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">
-          <div className="p-5 relative">
+          <div className="p-7 relative">
             <img src={logo} alt="logo" width="auto" />
           </div>
           <div className="shadow-2xl">
             <GoogleLogin
-              clientId="" //구글로부터 받아서 넘겨줘야하는 아이디
+              clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
               render={(props) => (
                 <button
                   type="button"
