@@ -12,3 +12,11 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+
+/* 비디오 컨트롤러 가리기 */
+.vcs-controller,
+#controller {
+  display: none;
+  opacity: 0;
+}
