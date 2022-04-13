@@ -4,9 +4,27 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/login_logo.png";
+import { useState, useEffect } from "react";
+
 const Login = () => {
-  const responseGoogle = (response) => {
-    console.log("구글로그인 > ", response);
+  console.log("login()");
+
+  const responseGoogle = async (response) => {
+    console.log("responseGoogle");
+    console.log(response);
+    await localStorage.setItem("user", JSON.stringify(response.profileObj));
+
+    const { name, googleId, imageUrl } = response.profileObj;
+
+    // user 스키마와 동일한 document 임
+    const doc = {
+      _id: googleId,
+      _type: "user",
+      userName: name,
+      image: imageUrl,
+    };
+
+    console.log("response.profileObj", response.profileObj);
   };
 
   return (
@@ -19,7 +37,7 @@ const Login = () => {
           loop
           controls={false}
           muted
-          autoplay="true"
+          autoPlay
         />
         <div className="flex flex-col absolute justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">
           <div className="p-7 relative">
@@ -27,13 +45,13 @@ const Login = () => {
           </div>
           <div className="shadow-2xl">
             <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
-              render={(props) => (
+              clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
+              render={(renderProps) => (
                 <button
                   type="button"
                   className="bg-indigo-900 opacity-90 text-white flex justify-center items-center p-4 rounded-lg cursor-pointer outline-none hover:bg-indigo-800 ease-in duration-300"
-                  onClick={props.onClick}
-                  disabled={props.disabled}
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
                 >
                   <FcGoogle className="mr-4" />
                   Google 계정으로 로그인
