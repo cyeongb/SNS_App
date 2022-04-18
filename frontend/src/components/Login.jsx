@@ -6,23 +6,35 @@ import shareVideo from "../assets/share.mp4";
 import logo from "../assets/login_logo.png";
 import { useState, useEffect } from "react";
 
+import { client } from "../client";
+
 const Login = () => {
   console.log("login()");
 
-  const responseGoogle = async (response) => {
+  // url 조작할 수 있는 navigate() 선언
+  const navigate = useNavigate();
+
+  const responseGoogle = (response) => {
     console.log("responseGoogle");
     console.log(response);
-    await localStorage.setItem("user", JSON.stringify(response.profileObj));
 
+    localStorage.setItem("user", JSON.stringify(response.profileObj));
     const { name, googleId, imageUrl } = response.profileObj;
-
-    // user 스키마와 동일한 document 임
     const doc = {
       _id: googleId,
       _type: "user",
       userName: name,
       image: imageUrl,
     };
+    // client
+
+    // sanity 내장함수- user를 생성함
+    client.createIfNotExists(doc).then(() => {
+      // navigate('주소',{replace,state})
+      // replace true : 해당 주소로 넘어간 후 뒤로가기를 해도 돌아오지 않음.
+      // false는 뒤로가기 가능.
+      navigate("/", { replace: true });
+    });
 
     console.log("response.profileObj", response.profileObj);
   };
