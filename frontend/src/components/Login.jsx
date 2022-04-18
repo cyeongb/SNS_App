@@ -14,12 +14,13 @@ const Login = () => {
   // url 조작할 수 있는 navigate() 선언
   const navigate = useNavigate();
 
-  const responseGoogle = (response) => {
+  const responseGoogle = async (response) => {
     console.log("responseGoogle");
-    console.log(response);
+    console.log("response", response);
+    console.log("response.profileObj", response.profileObj);
 
-    localStorage.setItem("user", JSON.stringify(response.profileObj));
-    const { name, googleId, imageUrl } = response.profileObj;
+    await localStorage.setItem("user", JSON.stringify(response.profileObj));
+    const { name, googleId, imageUrl } = response.profileObj; // 여기서 막힘
     const doc = {
       _id: googleId,
       _type: "user",
@@ -57,21 +58,22 @@ const Login = () => {
           </div>
           <div className="shadow-2xl">
             <GoogleLogin
-              clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
-              render={(renderProps) => (
-                <button
-                  type="button"
-                  className="bg-indigo-900 opacity-90 text-white flex justify-center items-center p-4 rounded-lg cursor-pointer outline-none hover:bg-indigo-800 ease-in duration-300"
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  <FcGoogle className="mr-4" />
-                  Google 계정으로 로그인
-                </button>
-              )}
-              onSucess={responseGoogle}
+              clientId={`${process.env.REACT_APP_CLIENT_ID}`}
+              // render={(renderProps) => (
+              //   <button
+              //     type="button"
+              //     className="bg-indigo-900 opacity-90 text-white flex justify-center items-center p-4 rounded-lg cursor-pointer outline-none hover:bg-indigo-800 ease-in duration-300"
+              //     onClick={renderProps.onClick}
+              //     disabled={renderProps.disabled}
+              //   >
+              //     <FcGoogle className="mr-4" />
+              //     Google 계정으로 로그인
+              //   </button>
+              // )}
+              onSuccess={responseGoogle}
               onFailure={responseGoogle}
-              cookiePolicy="single_host_origin"
+              cookiePolicy={"single_host_origin"}
+              // isSignedIn={true}
             />
           </div>
         </div>
