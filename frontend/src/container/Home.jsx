@@ -34,13 +34,14 @@ const Home = () => {
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out ">
       <div className="hidden md:flex h-screen flex-initial">
         {/* desk-top 모드일때는 hidden으로 숨겼다가 middle 크기일때 사이드바가 두개로 나뉨 */}
-        <SideBar />
+        {/* user가 있으면 user데이터를 가져온다. */}
+        <SideBar user={user && user} />
       </div>
       <div className="flex md:hidden flex-row">
         <HiMenu
           fontSize={40}
           className="cursor-pointer"
-          onClick={() => setToggleSidebar(false)}
+          onClick={() => setToggleSidebar(true)}
         />
         <Link to="/">
           <img src={logo} alt="logo" className="w-9" />
@@ -49,6 +50,18 @@ const Home = () => {
           <img src={user?.image} alt="logo" className="w-9" />
         </Link>
       </div>
+      {toggleSidebar && (
+        <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
+          <div className="absolute w-full flex justify-end items-center p-2">
+            <AiFillCloseCircle
+              fontSize={30}
+              className="cursor-pointer "
+              onClick={() => setToggleSidebar(false)}
+            />
+          </div>
+          <SideBar user={user && user} closeToggle={setToggleSidebar} />
+        </div>
+      )}
     </div>
   );
 };
