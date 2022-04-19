@@ -59,17 +59,17 @@ const Login = () => {
           <div className="shadow-2xl">
             <GoogleLogin
               clientId={`${process.env.REACT_APP_CLIENT_ID}`}
-              // render={(renderProps) => (
-              //   <button
-              //     type="button"
-              //     className="bg-indigo-900 opacity-90 text-white flex justify-center items-center p-4 rounded-lg cursor-pointer outline-none hover:bg-indigo-800 ease-in duration-300"
-              //     onClick={renderProps.onClick}
-              //     disabled={renderProps.disabled}
-              //   >
-              //     <FcGoogle className="mr-4" />
-              //     Google 계정으로 로그인
-              //   </button>
-              // )}
+              render={(renderProps) => (
+                <button
+                  type="button"
+                  className="bg-indigo-900 opacity-90 text-white flex justify-center items-center p-4 rounded-lg cursor-pointer outline-none hover:bg-indigo-800 ease-in duration-300"
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  <FcGoogle className="mr-4" />
+                  Google 계정으로 로그인
+                </button>
+              )}
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
