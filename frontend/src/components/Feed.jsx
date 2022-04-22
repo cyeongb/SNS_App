@@ -18,12 +18,12 @@ const Feed = () => {
       // categoryId(=searchTerm) 로 각 게시물 데이터를 불러온다.
       const query = searchQuery(categoryId);
       client.fetch(query).then((data) => {
-        setPins(data);
+        setPins(data); //게시물 set
         setLoading(false);
       });
     } else {
       client.fetch(feedQuery).then((data) => {
-        setPins(data);
+        setPins(data); // 게시물 set
         setLoading(false);
       });
     }
@@ -31,7 +31,8 @@ const Feed = () => {
 
   if (loading) return <Spinner />;
 
-  return <div>Feed</div>;
+  return;
+  <div>{pins && <MasonryLayout pins={pins} />}</div>;
 };
 
 export default Feed;
