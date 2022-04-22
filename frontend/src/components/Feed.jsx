@@ -12,7 +12,7 @@ const Feed = () => {
   const { categoryId } = useParams(); // url 파라미터값을 여기에 저장한다.
 
   useEffect(() => {
-    console.log("categoryId::", categoryId);
+    // console.log("categoryId::", categoryId);
     setLoading(true);
     if (categoryId) {
       // categoryId(=searchTerm) 로 각 게시물 데이터를 불러온다.
@@ -31,8 +31,7 @@ const Feed = () => {
 
   if (loading) return <Spinner />;
 
-  return;
-  <div>{pins && <MasonryLayout pins={pins} />}</div>;
+  return <div>{pins && <MasonryLayout pins={pins} />}</div>;
 };
 
 export default Feed;

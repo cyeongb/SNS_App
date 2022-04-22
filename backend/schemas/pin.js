@@ -1,4 +1,3 @@
-// 이미지 연결 url
 
 export default {
   name: "pin",
@@ -27,7 +26,7 @@ export default {
     },
     {
       name: "image",
-      title: "Imgage",
+      title: "Image",
       type: "image",
       options: { hotspot: true },
       //hotspot :이미지에 텍스트, 이미지, 링크등이 포함된 아이콘 '대화형 이미지'

@@ -37,25 +37,25 @@ export const searchQuery = (searchTerm) => {
 };
 
 // pin 게시물을 가져와서 생성일 기준 내림차순 정렬 검색
-export const feedQuery = `*[_type=='pin'] | order(_createAt desc){
+export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
   image{
-    assets ->{
+    asset->{
       url
-    } 
+    }
   },
-  _id,
-  destination,
-  postedBy ->{
-    _id,
-    userName,
-    image
-  },
-  save[]{
-    _key,
-    postedBy->{
       _id,
-      userName,
-      image
-    },
-  },
-}`;
+      destination,
+      postedBy->{
+        _id,
+        userName,
+        image
+      },
+      save[]{
+        _key,
+        postedBy->{
+          _id,
+          userName,
+          image
+        },
+      },
+    } `;
