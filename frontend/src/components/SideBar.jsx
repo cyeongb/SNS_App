@@ -30,10 +30,10 @@ const SideBar = ({ user, closeToggle }) => {
       <div className="flex flex-col">
         <Link
           to="/"
-          clasName="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
+          className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
           onClick={handleCloseSidebar}
         >
-          <img src={logo} alt="공유 로고" className="w-10 ml-4 mb-3 mt-2.5" />
+          <img src={logo} alt="공유 로고" className="w-10" />
         </Link>
         <div className="flex flex-col gap-5">
           <NavLink
