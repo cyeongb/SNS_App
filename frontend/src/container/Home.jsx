@@ -25,6 +25,8 @@ const Home = () => {
 
   //sanity data 불러오기
   useEffect(() => {
+    console.log("client >>", client);
+
     const query = userQuery(userInfo?.googleId);
     client.fetch(query).then((data) => {
       setUser(data[0]);
