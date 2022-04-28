@@ -6,6 +6,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import { SideBar, UserProfile } from "../components";
 import { client } from "../client";
 import { userQuery } from "../utils/data";
+import {fetchUser }from "../utils/fetchUser";
 import Pins from "./Pins";
 
 import logo from "../assets/gongyou2.png";
@@ -17,10 +18,7 @@ const Home = () => {
   const scrollRef = useRef("");
 
   // userinfo를 새로 생성하기위한 함수, 그래서 만약 user가 localstorage에 남아있으면 clear해 준다.
-  const userInfo =
-    localStorage.getItem("user") !== undefined
-      ? JSON.parse(localStorage.getItem("user"))
-      : localStorage.clear();
+  const userInfo = fetchUser();
   console.log("userInfo", userInfo);
 
   //sanity data 불러오기
