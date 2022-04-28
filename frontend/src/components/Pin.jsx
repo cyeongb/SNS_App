@@ -149,8 +149,18 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         )}
       </div>
 
-
-      
+      <Link
+        to={`user-profile/${userInfo?._id}`}
+        className="flex gap-2 mt-2 items-center"
+      >
+        <img
+          className="w-8 h-8 rounded-full object-cover"
+          src={postedBy?.image}
+          alt="사용자이미지"
+          title={postedBy?.userName}
+        />
+        <p className="font-semibold text-sm">{postedBy?.userName}</p>
+      </Link>
     </div>
   );
 };
