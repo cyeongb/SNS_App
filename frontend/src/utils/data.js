@@ -2,7 +2,7 @@
 
 export const categories = [
   {
-    name: "foods",
+    name: "food",
     image:
       // 치킨
       "https://i.pinimg.com/564x/a5/c7/7f/a5c77fc0289c6712c4b485a3772ae18c.jpg",
@@ -13,12 +13,12 @@ export const categories = [
       "https://i.pinimg.com/564x/f5/87/e8/f587e89e7f6b0017b0110372528ec0e2.jpg",
   },
   {
-    name: "programming",
+    name: "study",
     image:
       "https://i.pinimg.com/564x/5e/2b/a6/5e2ba6045aa43f4588ca400ad469d715.jpg",
   },
   {
-    name: "travel",
+    name: "trip",
     image:
       "https://i.pinimg.com/564x/d6/e2/31/d6e231ad2e5653a5a3b350662642e9b4.jpg",
   },
@@ -33,7 +33,7 @@ export const categories = [
       "https://i.pinimg.com/564x/b8/8c/d1/b88cd1b971bbe8abbdacddde55d3ae7b.jpg",
   },
   {
-    name: "ootd",
+    name: "fashion",
     image:
       "https://i.pinimg.com/736x/42/f8/65/42f8651157094debfacc2f29f1aa12b9.jpg",
   },
@@ -41,6 +41,11 @@ export const categories = [
     name: "mind",
     image:
       "https://i.pinimg.com/736x/24/1b/f2/241bf2b9499b5a4dd8232a3835aaf79e.jpg",
+  },
+  {
+    name: "cafe",
+    image:
+      "https://i.pinimg.com/564x/f5/8e/c2/f58ec2d7d6803eefb311551ed1b18f43.jpg",
   },
 ];
 
