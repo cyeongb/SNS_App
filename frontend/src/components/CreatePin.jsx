@@ -55,6 +55,8 @@ const CreatePin = ({ user }) => {
     }
   };
 
+  const savePin = () => {};
+
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 ">
       {fields && (
@@ -143,16 +145,28 @@ const CreatePin = ({ user }) => {
           />
           <div className="flex flex-col">
             <div>
-              <p className="mb-2 font-semibold text-lg sm:text-xl">
-                카테고리 선택
-              </p>
+              <p className="mb-2 font-semibold text-lg sm:text-xl">카테고리</p>
               <select
                 className="outline-none w-4/5 text-base border-b-2 border-gray-200 rounded-md cursor-pointer"
                 onChange={(e) => setCategory(e.target.value)}
                 value={category}
               >
-                <option value="other" className="bg-white">선택하기</option>
+                <option value="other" className="bg-white">
+                  선택
+                </option>
+                {categories.map((category) => (
+                  <option className="text-base border-0 outline-none bg-white text-black ">
+                    {category.name}
+                  </option>
+                ))}
               </select>
+            </div>
+            <div className="flex justify-end items-end mt-5">
+              <button
+                type="button"
+                onClick={savePin}
+                className="bg-purple-400 hover:bg-purple-600 text-white font-bold p-2 rounded-full w-28 outline-none transition-all duration-300 ease-in"
+              >저장</button>
             </div>
           </div>
         </div>
