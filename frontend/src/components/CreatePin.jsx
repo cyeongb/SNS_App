@@ -9,20 +9,22 @@ import { categories } from "../utils/data";
 
 //categories [{name:'cat',image:'url'}]
 const CreatePin = ({ user }) => {
-  const [title, setTitle] = useState("");
-  const [about, setAbout] = useState("");
-  const [destination, setDestination] = useState("");
+  const [title, setTitle] = useState(""); //게시물 제목
+  const [about, setAbout] = useState(""); // 게시물 내용
+  const [destination, setDestination] = useState(""); // 게시물 게시물 url
   const [loading, setLoading] = useState(false);
-  const [fields, setFields] = useState(false);
-  const [category, setCategory] = useState(null);
-  const [imageAsset, setImageAsset] = useState(null);
-  const [wrongImageType, setWrongImageType] = useState(false);
+  const [fields, setFields] = useState(false); // 게시물 빈칸 여부
+  const [category, setCategory] = useState(""); // 게시물 카테고리
+  const [imageAsset, setImageAsset] = useState(""); // 게시물 이미지 데이터
+  const [wrongImageType, setWrongImageType] = useState(false); //게시물 이미지 업로드 타입
 
   const navigate = useNavigate();
 
+  //이미지 올리기
   const uploadImage = (e) => {
     const { type, name } = e.target.files[0];
 
+    //게시물은 하나씩만 올리기 때문에 0번쨰로 설정
     console.log("e.target.files[0] >", e.target.files[0]);
 
     if (
@@ -55,6 +57,7 @@ const CreatePin = ({ user }) => {
     }
   };
 
+  //게시물 post 하기
   const savePin = () => {
     if (title && about && destination && imageAsset?._id && category) {
       const doc = {
@@ -76,9 +79,12 @@ const CreatePin = ({ user }) => {
         },
         category,
       };
-      client.create(doc).then(() => {
-        navigate("/");
-      }).catch((error) => console.log(error))
+      client
+        .create(doc)
+        .then(() => {
+          navigate("/");
+        })
+        .catch((error) => console.log(error));
     } else {
       //항목이 다 안채워졌기 때문에 fields를 true로,
       setFields(true);
@@ -112,8 +118,8 @@ const CreatePin = ({ user }) => {
                     </p>
                   </div>
                   <p className="mt-32 text-gray-400">
-                    &#8251; 업로드는 jpg, jpeg, svg, png, gif 그리고 20mb이하만
-                    가능합니다. &#8251;
+                    &#8251; 업로드는 jpg, jpeg, svg, png, gif 그리고 20mb이하를
+                    권장합니다. &#8251;
                   </p>
                 </div>
                 <input
