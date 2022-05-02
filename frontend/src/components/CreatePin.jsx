@@ -55,12 +55,43 @@ const CreatePin = ({ user }) => {
     }
   };
 
-  const savePin = () => {};
+  const savePin = () => {
+    if (title && about && destination && imageAsset?._id && category) {
+      const doc = {
+        _type: "pin",
+        title,
+        about,
+        destination,
+        image: {
+          _type: "image",
+          asset: {
+            _type: "reference",
+            _ref: imageAsset?._id,
+          },
+        },
+        useId: user._id,
+        postedBy: {
+          _type: "postedBy",
+          _ref: user._id,
+        },
+        category,
+      };
+      client.create(doc).then(() => {
+        navigate("/");
+      }).catch((error) => console.log(error))
+    } else {
+      //항목이 다 안채워졌기 때문에 fields를 true로,
+      setFields(true);
+      // setTimeout(() => {
+      //   setFields(false);
+      // }, 3000);
+    }
+  };
 
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 ">
       {fields && (
-        <p className="text-red-500 mb-5 text-xl transition-all duration-200 ease-in">
+        <p className="text-red-400 mb-5 text-xl font-bold transition-all duration-300 ease-in-out">
           빈 항목을 채워주세요
         </p>
       )}
@@ -166,7 +197,9 @@ const CreatePin = ({ user }) => {
                 type="button"
                 onClick={savePin}
                 className="bg-purple-400 hover:bg-purple-600 text-white font-bold p-2 rounded-full w-28 outline-none transition-all duration-300 ease-in"
-              >저장</button>
+              >
+                저장
+              </button>
             </div>
           </div>
         </div>
