@@ -26,7 +26,7 @@ const PinDetail = ({ user }) => {
     if (query) {
       client.fetch(`${query}`).then((data) => {
         setPinDetail(data[0]);
-        console.log('pinDetail>>',pinDetail);
+        console.log("pinDetail>>", pinDetail);
         if (data[0]) {
           const query1 = pinDetailMorePinQuery(data[0]);
           client.fetch(query1).then((res) => {
@@ -62,13 +62,51 @@ const PinDetail = ({ user }) => {
           <div className="flex gap-2 items-center">
             <a
               href={`${pinDetail.image.asset.url}?dl=`}
-              className="bg-white w-9 h-9 rounded-full mb-7 flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none hover:transition-all duration-300 ease-in"
+              className="bg-white hover:bg-purple-300 w-11 h-11 rounded-full mb-7 flex items-center justify-center text-dark text-3xl opacity-75 hover:opacity-100 hover:shadow-md outline-none hover:transition-all duration-300 ease-in"
               download
               onClick={(e) => e.stopPropagation()}
             >
               <MdDownloadForOffline />
             </a>
           </div>
+          <a href={pinDetail.destination} target="_blank" rel="noreferrer" className="text-gray-500">
+            {pinDetail.destination}
+          </a>
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold break-words mt-3 text-gray-600">
+            {pinDetail.title}
+          </h1>
+          <p className="mt-3 font-semibold text-gray-600">{pinDetail.about}</p>
+        </div>
+        <Link
+          to={`user-profile/${pinDetail.postedBy?._id}`}
+          className="flex gap-2 mt-5 items-center bg-white rounded-lg"
+        >
+          <img
+            className="w-8 h-8 rounded-full"
+            src={pinDetail.postedBy?.image}
+            alt="사용자프로필"
+            title={pinDetail.postedBy?.userName}
+          />
+          <p className="font-semibold text-sm">
+            {pinDetail.postedBy?.userName}
+          </p>
+        </Link>
+        <h2 className="mt-5 text-xl font-bold">댓글</h2>
+        <div className="max-h-370 overflow-y-auto">
+          {pinDetail?.comments?.map((comment, i) => (
+            <div
+              className="flex gap-2 mt-5 items-center bg-white rounded-lg"
+              key={"comment" + i}
+            >
+              <img
+                src={comment.postedBy?.image}
+                alt="사용자프로필"
+                className="w-10 h-10 rounded-full cursor-pointer "
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

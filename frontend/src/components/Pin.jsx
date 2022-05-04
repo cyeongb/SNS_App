@@ -156,7 +156,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         <img
           className="w-8 h-8 rounded-full object-cover"
           src={postedBy?.image}
-          alt="사용자이미지"
+          alt="사용자프로필"
           title={postedBy?.userName}
         />
         <p className="font-semibold text-sm">{postedBy?.userName}</p>

@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { RiHomeFill } from "react-icons/ri";
-import { IoIosArrowForward } from "react-icons/io";
 import logo from "../assets/gongyou2.png";
 
 const isNotActiveStyle =
@@ -70,11 +69,11 @@ const SideBar = ({ user, closeToggle }) => {
           onClick={handleCloseSidebar}
         >
           <img
-            src={user.image}
-            alt="유저이미지"
+            src={user?.image}
+            alt="사용자프로필"
             className="w-10 h-10 rounded-full"
           />
-          <p className="text-xs text-gray-400">{user.userName}</p>
+          <p className="text-xs text-gray-500">{user.userName}</p>
         </Link>
       )}
     </div>
