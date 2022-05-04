@@ -13,11 +13,11 @@ const PinDetail = ({ user }) => {
   const [pins, setPins] = useState("");
   const [pinDetail, setPinDetail] = useState(null);
   const [comment, setComment] = useState("");
+  console.log("comment 확인>", comment); //ok
   const [addComment, setAddComment] = useState(false);
 
   // 특정 id에 접근하기 - 특정 parameter를 useParams로 fetch해 와서 사용할 수 있음
   const { pinId } = useParams();
-  // console.log('pinId>>',pinId)  //가져옴
 
   //게시물 상세 데이터 가져오기
   const fetchPinDetail = () => {
@@ -62,14 +62,19 @@ const PinDetail = ({ user }) => {
           <div className="flex gap-2 items-center">
             <a
               href={`${pinDetail.image.asset.url}?dl=`}
-              className="bg-white hover:bg-purple-300 w-11 h-11 rounded-full mb-7 flex items-center justify-center text-dark text-3xl opacity-75 hover:opacity-100 hover:shadow-md outline-none hover:transition-all duration-300 ease-in"
+              className="bg-white hover:shadow-lg hover:bg-slate-100 w-11 h-11 rounded-full mb-7 flex items-center justify-center text-dark text-3xl opacity-75 hover:opacity-100 outline-none hover:transition-all duration-300 ease-in"
               download
               onClick={(e) => e.stopPropagation()}
             >
               <MdDownloadForOffline />
             </a>
           </div>
-          <a href={pinDetail.destination} target="_blank" rel="noreferrer" className="text-gray-500">
+          <a
+            href={pinDetail.destination}
+            target="_blank"
+            rel="noreferrer"
+            className="text-gray-500"
+          >
             {pinDetail.destination}
           </a>
         </div>
@@ -101,12 +106,36 @@ const PinDetail = ({ user }) => {
               key={"comment" + i}
             >
               <img
-                src={comment.postedBy?.image}
+                src={comment?.postedBy?.image}
                 alt="사용자프로필"
                 className="w-10 h-10 rounded-full cursor-pointer "
               />
+              <div className="flex flex-col ">
+                <p className="font-bold">{comment?.postedBy?.userName}</p>
+                <p>{comment?.comment}</p>
+              </div>
             </div>
           ))}
+        </div>
+        <div className="flex flex-wrap mt-6 gap-3">
+          <Link
+            to={`user-profile/${pinDetail.postedBy?._id}`}
+            className="flex gap-2 mt-5 items-center bg-white rounded-lg"
+          >
+            <img
+              className="w-8 h-8 rounded-full"
+              src={pinDetail.postedBy?.image}
+              alt="사용자프로필"
+              title={pinDetail.postedBy?.userName}
+            />
+          </Link>
+          <input
+            className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300"
+            type="text"
+            placeholder="댓글 남기기"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
         </div>
       </div>
     </div>
