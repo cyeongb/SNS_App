@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { MdDownloadForOffline, MdDelete } from "react-icons/md";
@@ -26,6 +26,8 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   const alreadySaved = !!save?.filter(
     (item) => item.postedBy._id === userInfo?.googleId
   )?.length;
+
+
 
   // sanity에 게시물 저장하기
   const savePin = (id) => {
@@ -55,6 +57,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
   //게시물 삭제하기
   const deletePin = (id) => {
+    console.log("delete pin id", id);
     client
       .delete(id)
       .then(() => {
@@ -62,6 +65,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
       })
       .catch((err) => console.log("deletePin error", err));
   };
+
+  useEffect(() => {
+    savePin(_id);
+  }, [savingPost]);
 
   return (
     <div className="m-2 ">
@@ -128,7 +135,9 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                   className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:100 hover:shadow-md"
                 >
                   <IoMdShareAlt />
-                  {destination.length < 18 ? destination : `${destination.slice(8,20)}...`}
+                  {destination.length < 18
+                    ? destination
+                    : `${destination.slice(8, 20)}...`}
                 </a>
               )}
 

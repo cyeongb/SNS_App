@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MdDownloadForOffline } from "react-icons/md";
+import { IoMdShareAlt } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
@@ -101,9 +102,10 @@ const PinDetail = ({ user }) => {
               href={pinDetail.destination}
               target="_blank"
               rel="noreferrer"
-              className="text-gray-500"
+              className="text-gray-500 w-auto flex items-center gap-2 underline hover:text-black"
             >
-              {pinDetail.destination}
+              {pinDetail.destination.slice(0, 20)}
+              <IoMdShareAlt />
             </a>
           </div>
           <div>
@@ -128,6 +130,7 @@ const PinDetail = ({ user }) => {
               {pinDetail.postedBy?.userName}
             </p>
           </Link>
+          <hr  className="mt-10 text-red-300 border-gray-100" />
           <h2 className="mt-5 text-xl font-bold">댓글</h2>
           <div className="max-h-370 overflow-y-auto">
             {pinDetail?.comments?.map((comment, i) => (
@@ -186,7 +189,9 @@ const PinDetail = ({ user }) => {
         </>
       ) : (
         <>
-          <h2 className="text-center font-bold text-2xl mt-8 mb-4">추천할만한 공유글이 없습니다.</h2>
+          <h2 className="text-center font-bold text-2xl mt-8 mb-4">
+            추천할만한 공유글이 없습니다.
+          </h2>
         </>
       )}
     </>

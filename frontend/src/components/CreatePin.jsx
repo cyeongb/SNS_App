@@ -83,6 +83,7 @@ const CreatePin = ({ user }) => {
         .create(doc)
         .then(() => {
           navigate("/");
+          window.location.reload();
         })
         .catch((error) => console.log(error));
     } else {
@@ -139,7 +140,10 @@ const CreatePin = ({ user }) => {
                 <button
                   type="button"
                   className="absolute bottom-3 right-3 p-3 rounded-full bg-white hover:bg-red-400 text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in"
-                  onClick={() => setImageAsset(null)}
+                  onClick={() => {
+                    setImageAsset("");
+                    window.location.reload();
+                  }}
                   title="삭제하기"
                 >
                   <MdDelete />
