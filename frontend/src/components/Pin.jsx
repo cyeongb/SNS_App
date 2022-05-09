@@ -55,9 +55,12 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
   //게시물 삭제하기
   const deletePin = (id) => {
-    client.delete(id).then(() => {
-      window.location.reload();
-    }).catch(err =>console.log('deletePin error',err))
+    client
+      .delete(id)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => console.log("deletePin error", err));
   };
 
   return (
@@ -125,9 +128,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                   className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:100 hover:shadow-md"
                 >
                   <IoMdShareAlt />
-                  {destination.length > 20
-                    ? destination.slice(8, 25)
-                    : destination.slice(8)}
+                  {destination.length < 20 ? destination : destination.slice(8,20).concat("...")}
                 </a>
               )}
 
