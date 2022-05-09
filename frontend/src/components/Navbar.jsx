@@ -34,7 +34,7 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
           <img
             src={user.image}
             alt="사용자프로필"
-            className="w-13 h-12 rounded-lg"
+            className="w-14 h-12 rounded-lg"
           />
         </Link>
         <Link

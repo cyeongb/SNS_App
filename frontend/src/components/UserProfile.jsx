@@ -59,27 +59,30 @@ const UserProfile = () => {
   //사용자가 생성, 저장한 게시물 노출 로직
   useEffect(() => {
     if (text === "CREATED") {
-      console.log('여기? text>',text)
-      console.log('여기? userId>',userId)
+      console.log("여기? text>", text);
+      console.log("여기? userId>", userId);
       const createdPinsQuery = userCreatedPinsQuery(userId);
 
       client
         .fetch(createdPinsQuery)
         .then((data) => {
-          console.log('created data>>',data)
-          setPins(data)})
+          console.log("created data>>", data);
+          setPins(data);
+          console.log("created pins >", pins);
+        })
         .catch((err) => {
           console.log("createdPinsQuery err >", err);
         });
     } else {
-      console.log('여기? text>',text)
+      console.log("여기? text>", text);
       const savedPinsQuery = userSavedPinsQuery(userId);
 
       client
         .fetch(savedPinsQuery)
         .then((data) => {
-          console.log('saved data>>',data)
-          setPins(data)})
+          console.log("saved data>>", data);
+          setPins(data);
+        })
         .catch((err) => {
           console.log("savedPinsQuery err >", err);
         });
@@ -137,7 +140,7 @@ const UserProfile = () => {
               }`}
               type="button"
               onClick={(e) => {
-                console.log('e.target.textContent',e.target.textContent)
+                console.log("e.target.textContent", e.target.textContent);
                 setText(e.target.textContent);
                 setActiveBtn("CREATED");
               }}
@@ -154,12 +157,18 @@ const UserProfile = () => {
                 setActiveBtn("SAVED");
               }}
             >
-             SAVED
+              SAVED
             </button>
           </div>
 
           <div className="px-2">
-            <MasonryLayout pins={pins} />
+            {pins ? (
+              <MasonryLayout pins={pins} />
+            ) : (
+              <h2 className="text-center font-bold text-2xl mt-8">
+                게시물이 없습니다.
+              </h2>
+            )}
           </div>
         </div>
       </div>
