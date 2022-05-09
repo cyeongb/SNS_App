@@ -15,10 +15,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const responseGoogle = async (response) => {
-    // console.log("responseGoogle");
-    // console.log("response", response);
-    // console.log("response.profileObj", response.profileObj);
-
     await localStorage.setItem("user", JSON.stringify(response.profileObj));
     const { name, googleId, imageUrl } = response.profileObj; // 여기서 막힘
     const doc = {
@@ -62,7 +58,7 @@ const Login = () => {
               render={(renderProps) => (
                 <button
                   type="button"
-                  className="bg-indigo-900 opacity-90 text-white flex justify-center items-center p-4 rounded-lg cursor-pointer outline-none hover:bg-indigo-800 ease-in duration-300"
+                  className="bg-indigo-900 opacity-90 text-white flex justify-center items-center p-4 rounded-lg cursor-pointer outline-none hover:bg-indigo-800 transition-all ease-in duration-300"
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
                 >

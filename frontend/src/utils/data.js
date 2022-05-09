@@ -117,7 +117,7 @@ export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
       },
     } `;
 
-    //게시물이 없을 때 
+//게시물이 없을 때
 export const pinDetailQuery = (pinId) => {
   const query = `*[_type == "pin" && _id == '${pinId}']{
         image{
@@ -183,7 +183,7 @@ export const pinDetailMorePinQuery = (pin) => {
 };
 
 export const userCreatedPinsQuery = (userId) => {
-  const query = `*[ _type == 'pin' && userId == '${userId}'] | order(_createdAt desc){
+  const query = `*[_type == "pin" && userId == '${userId}'] | order(_createdAt desc){
     image{
       asset->{
         url
@@ -208,7 +208,7 @@ export const userCreatedPinsQuery = (userId) => {
 };
 
 export const userSavedPinsQuery = (userId) => {
-  const query = `*[_type == 'pin' && '${userId}' in save[].userId ] | order(_createdAt desc) {
+  const query = `*[_type == "pin" && '${userId}' in save[].userId ] | order(_createdAt desc) {
     image{
       asset->{
         url
