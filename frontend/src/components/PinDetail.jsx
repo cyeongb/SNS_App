@@ -13,7 +13,6 @@ const PinDetail = ({ user }) => {
   const [pins, setPins] = useState("");
   const [pinDetail, setPinDetail] = useState(null);
   const [comment, setComment] = useState("");
-  console.log("comment 확인>", comment); //ok
   const [addComment, setAddComment] = useState(false);
 
   // 특정 id에 접근하기 - 특정 parameter를 useParams로 fetch해 와서 사용할 수 있음
@@ -26,7 +25,7 @@ const PinDetail = ({ user }) => {
     if (query) {
       client.fetch(`${query}`).then((data) => {
         setPinDetail(data[0]);
-        console.log("pinDetail>>", pinDetail);
+        // console.log("pinDetail>>", pinDetail);
         if (data[0]) {
           const query1 = pinDetailMorePinQuery(data[0]);
           client.fetch(query1).then((res) => {

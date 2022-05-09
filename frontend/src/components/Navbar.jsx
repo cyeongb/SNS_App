@@ -5,7 +5,7 @@ import { MdAdd, MdSearch } from "react-icons/md";
 // 전 페이지 공통으로 쓰이는 컴포넌트
 
 const Navbar = ({ searchTerm, setSearchTerm, user }) => {
-  console.log("navbar- searchTerm:", searchTerm);
+  // console.log("navbar- searchTerm:", searchTerm);
   const navigate = useNavigate();
 
   if (!user) {

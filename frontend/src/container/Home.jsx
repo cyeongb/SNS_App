@@ -1,29 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
 import { HiMenu } from "react-icons/hi";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 
 import { SideBar, UserProfile } from "../components";
 import { client } from "../client";
 import { userQuery } from "../utils/data";
-import {fetchUser }from "../utils/fetchUser";
+import { fetchUser } from "../utils/fetchUser";
 import Pins from "./Pins";
 
 import logo from "../assets/gongyou2.png";
+import Spinner from "../components/Spinner";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [user, setUser] = useState("");
 
   const scrollRef = useRef("");
+  const navigate = useNavigate();
 
   // userinfo를 새로 생성하기위한 함수, 그래서 만약 user가 localstorage에 남아있으면 clear해 준다.
   const userInfo = fetchUser();
-  console.log("userInfo", userInfo);
+  // console.log("userInfo", userInfo);
 
   //sanity data 불러오기
   useEffect(() => {
-    console.log("client >>", client);
+    // console.log("client >>", client);
 
     const query = userQuery(userInfo?.googleId);
     client.fetch(query).then((data) => {
@@ -36,6 +38,11 @@ const Home = () => {
     // scroll default를 페이지 맨 끝위에 설정.
     scrollRef.current.scrollTo(0, 0);
   }, []);
+
+  // if (!user) {
+  //   navigate("/login");
+  //   return <Spinner />;
+  // }
 
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out ">

@@ -8,8 +8,8 @@ import { client, urlFor } from "../client";
 import { fetchUser } from "../utils/fetchUser";
 
 const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
-  console.log("save >", save);
-  console.log("image >", image);
+  // console.log("save >", save);
+  // console.log("image >", image);
 
   const navigate = useNavigate();
 

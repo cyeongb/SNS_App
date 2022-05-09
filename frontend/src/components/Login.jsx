@@ -9,15 +9,15 @@ import { useState, useEffect } from "react";
 import { client } from "../client";
 
 const Login = () => {
-  console.log("login()");
+  // console.log("login()");
 
   // url 조작할 수 있는 navigate() 선언
   const navigate = useNavigate();
 
   const responseGoogle = async (response) => {
-    console.log("responseGoogle");
-    console.log("response", response);
-    console.log("response.profileObj", response.profileObj);
+    // console.log("responseGoogle");
+    // console.log("response", response);
+    // console.log("response.profileObj", response.profileObj);
 
     await localStorage.setItem("user", JSON.stringify(response.profileObj));
     const { name, googleId, imageUrl } = response.profileObj; // 여기서 막힘
@@ -37,7 +37,7 @@ const Login = () => {
       navigate("/", { replace: true });
     });
 
-    console.log("response.profileObj", response.profileObj);
+    // console.log("response.profileObj", response.profileObj);
   };
 
   return (

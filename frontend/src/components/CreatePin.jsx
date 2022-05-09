@@ -25,7 +25,7 @@ const CreatePin = ({ user }) => {
     const { type, name } = e.target.files[0];
 
     //게시물은 하나씩만 올리기 때문에 0번쨰로 설정
-    console.log("e.target.files[0] >", e.target.files[0]);
+    // console.log("e.target.files[0] >", e.target.files[0]);
 
     if (
       // 사진 타입을 만족하면 wrongtype을 false로
@@ -46,7 +46,7 @@ const CreatePin = ({ user }) => {
         })
         .then((document) => {
           setImageAsset(document);
-          console.log("imageAsset >", imageAsset);
+          // console.log("imageAsset >", imageAsset);
           setLoading(false);
         })
         .catch((error) => {
