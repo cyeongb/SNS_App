@@ -202,7 +202,7 @@ const CreatePin = ({ user }) => {
               <button
                 type="button"
                 onClick={savePin}
-                className="bg-purple-400 hover:bg-purple-600 text-white font-bold p-2 rounded-full w-28 outline-none transition-all duration-300 ease-in"
+                className="bg-purple-500/70 hover:bg-purple-600/70 text-white font-bold p-2 rounded-full w-28 outline-none transition-all duration-300 ease-in"
               >
                 저장
               </button>

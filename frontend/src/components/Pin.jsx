@@ -96,7 +96,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                 <button
                   type="button"
                   title="저장됨"
-                  className="bg-purple-400  opacity-60 hover:cursor-default hover:opacity-100 text-white font-bold p-2 py-3 text-lg rounded-3xl hover:shadow-md outlined-none hover:transition-all duration-300 ease-in"
+                  className="bg-purple-500/70 hover:bg-purple-600/70  opacity-60 hover:cursor-default hover:opacity-100 text-white font-bold p-2 py-3 text-lg rounded-3xl hover:shadow-md outlined-none hover:transition-all duration-300 ease-in"
                 >
                   {save?.length} <FaHeart />
                 </button>

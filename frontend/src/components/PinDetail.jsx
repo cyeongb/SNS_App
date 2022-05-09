@@ -37,6 +37,34 @@ const PinDetail = ({ user }) => {
     }
   };
 
+  //댓글 달기
+  const addingComment = () => {
+    console.log('addingComment() comment',comment)
+    if (comment) {
+      setAddComment(true);
+
+      client
+        .patch(pinId)
+        .setIfMissing({ comments: [] })
+        .insert("after", "comments[-1]", [
+          {
+            comment,
+            _key: uuidv4(),
+            postedBy: {
+              _type: "postedBy",
+              _ref: user._id,
+            },
+          },
+        ])
+        .commit()
+        .then(() => {
+          fetchPinDetail();
+          setComment("");
+          setAddComment(false)
+        });
+    }
+  };
+
   useEffect(() => {
     fetchPinDetail();
   }, [pinId]);
@@ -62,7 +90,7 @@ const PinDetail = ({ user }) => {
           <div className="flex gap-2 items-center">
             <a
               href={`${pinDetail.image.asset.url}?dl=`}
-              className="bg-white hover:shadow-lg hover:bg-slate-100 w-11 h-11 rounded-full mb-7 flex items-center justify-center text-dark text-3xl opacity-75 hover:opacity-100 outline-none hover:transition-all duration-300 ease-in"
+              className="bg-white hover:shadow-lg hover:bg-slate-100/60 w-11 h-11 rounded-full mb-7 flex items-center justify-center text-dark text-3xl opacity-75 hover:opacity-100 outline-none hover:transition-all duration-300 ease-in"
               download
               onClick={(e) => e.stopPropagation()}
             >
@@ -106,13 +134,13 @@ const PinDetail = ({ user }) => {
               key={"comment" + i}
             >
               <img
-                src={comment?.postedBy?.image}
+                src={comment.postedBy.image}
                 alt="사용자프로필"
                 className="w-10 h-10 rounded-full cursor-pointer "
               />
               <div className="flex flex-col ">
-                <p className="font-bold">{comment?.postedBy?.userName}</p>
-                <p>{comment?.comment}</p>
+                <p className="font-bold">{comment.postedBy.userName}</p>
+                <p>{comment.comment}</p>
               </div>
             </div>
           ))}
@@ -123,7 +151,7 @@ const PinDetail = ({ user }) => {
             className="flex gap-2 mt-5 items-center bg-white rounded-lg"
           >
             <img
-              className="w-8 h-8 rounded-full"
+              className="w-9 h-9 rounded-full cursor-pointer mb-2"
               src={pinDetail.postedBy?.image}
               alt="사용자프로필"
               title={pinDetail.postedBy?.userName}
@@ -136,6 +164,13 @@ const PinDetail = ({ user }) => {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
+          <button
+            type="button"
+            className="bg-purple-500/70 hover:bg-purple-600/70 text-white rounded-full px-4 py-1 font-semibold text-base outline-none transition-all duration-300 ease-in"
+            onClick={addingComment}
+          >
+            {addComment ? "댓글남기기" : "저장"}
+          </button>
         </div>
       </div>
     </div>
