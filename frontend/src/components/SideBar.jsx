@@ -71,7 +71,7 @@ const SideBar = ({ user, closeToggle }) => {
           <img
             src={user?.image}
             alt="사용자프로필"
-            className="w-10 h-10 rounded-full"
+            className="w-9 h-9 rounded-full p-1 m-1"
           />
           <p className="text-xs text-gray-500">{user.userName}</p>
         </Link>
