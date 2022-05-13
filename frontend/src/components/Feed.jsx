@@ -31,6 +31,10 @@ const Feed = () => {
 
   if (loading) return <Spinner />;
 
+  if (!pins?.length) {
+    return <h2 className="text-gray-500 font-bold text-center">게시물이 없습니다.</h2>;
+  }
+
   return <div>{pins && <MasonryLayout pins={pins} />}</div>;
 };
 

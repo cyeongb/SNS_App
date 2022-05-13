@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { RiHomeFill } from "react-icons/ri";
 import logo from "../assets/gongyou2.png";
+import { categories } from "../utils/data";
 
 const isNotActiveStyle =
   "flex items-center px-5 gap-3 text-gray-400 hover:text-purple transition-all duration-200 ease-in-out capitalize";
@@ -9,15 +10,15 @@ const isNotActiveStyle =
 const isActiveStyle =
   "flex items-center px-5 gap-3 font-extrabold border-r-2 border-purple  transition-all duration-200 ease-in-out capitalize";
 
-const categories = [
-  { name: "daily" }, //일상 daily
-  { name: "cafe" }, //카페 cafe
-  { name: "trip" }, //여행 trips
-  { name: "study" }, //스터디 study
-  { name: "food" }, //맛집 food
-  { name: "pet" }, //강아지,고양이 pet
-  { name: "others" }, //기타 others
-];
+// const categories = [
+//   { name: "daily" }, //일상 daily
+//   { name: "cafe" }, //카페 cafe
+//   { name: "trip" }, //여행 trips
+//   { name: "study" }, //스터디 study
+//   { name: "food" }, //맛집 food
+//   { name: "pet" }, //강아지,고양이 pet
+//   { name: "others" }, //기타 others
+// ];
 
 const SideBar = ({ user, closeToggle }) => {
   const handleCloseSidebar = () => {
@@ -46,16 +47,17 @@ const SideBar = ({ user, closeToggle }) => {
             Home
           </NavLink>
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">카테고리</h3>
-          {categories.slice(0, categories.length - 1).map((category) => (
+          {categories.slice(0, categories.length).map((category) => (
             <NavLink
-              to={`/category/${category.name}`}
+              to={`/category/${category.id}`}
               className={({ isActive }) =>
                 isActive ? isActiveStyle : isNotActiveStyle
               }
               onClick={handleCloseSidebar}
-              key={category.name}
+              key={category.id}
             >
               {category.name}
+             
             </NavLink>
           ))}
         </div>

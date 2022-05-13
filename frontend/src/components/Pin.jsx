@@ -49,8 +49,8 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         ])
         .commit()
         .then(() => {
-          window.location.reload();
           setSavingPost(false);
+           window.location.reload();
         });
     }
   };
