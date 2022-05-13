@@ -39,8 +39,8 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
         </Link>
         <Link
           to={`create-pin`}
-          className="bg-gray-400 text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center hover:bg-gray-500 transition-all duration-300 ease-in"
-          title="추가하기"
+          className="bg-gray-400 text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center hover:bg-purple-500/70 transition-all duration-300 ease-in"
+          title="공유글 추가하기"
         >
           <MdAdd fontSize={28} />
         </Link>

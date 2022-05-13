@@ -156,7 +156,7 @@ const PinDetail = ({ user }) => {
               className="flex gap-2 mt-5 items-center bg-white rounded-lg"
             >
               <img
-                className="w-9 h-9 rounded-full cursor-pointer mb-2"
+                className="w-9 h-9 rounded-full cursor-pointer mb-4"
                 src={pinDetail.postedBy?.image}
                 alt="사용자프로필"
                 title={pinDetail.postedBy?.userName}
@@ -171,7 +171,7 @@ const PinDetail = ({ user }) => {
             />
             <button
               type="button"
-              className="bg-purple-500/70 hover:bg-purple-600/70 text-white rounded-full px-4 py-1 font-semibold text-base outline-none transition-all duration-300 ease-in"
+              className="bg-purple-500/70 hover:bg-purple-600/70 text-white rounded-2xl px-4 font-semibold text-base outline-none transition-all duration-300 ease-in"
               onClick={addingComment}
             >
               {addComment ? "댓글남기기" : "저장"}
@@ -189,7 +189,7 @@ const PinDetail = ({ user }) => {
         </>
       ) : (
         <>
-          <h2 className="text-center font-bold text-2xl mt-8 mb-4">
+          <h2 className="text-gray-400 text-center font-bold text-2xl mt-8 mb-4">
             추천할만한 공유글이 없습니다.
           </h2>
         </>

@@ -25,8 +25,8 @@ const notActiveBtnStyles =
 const UserProfile = () => {
   const [user, setUser] = useState("");
   const [pins, setPins] = useState("");
-  const [text, setText] = useState("CREATED");
-  const [activeBtn, setActiveBtn] = useState("CREATED");
+  const [text, setText] = useState("생성됨");
+  const [activeBtn, setActiveBtn] = useState("생성됨");
 
   const navigate = useNavigate();
   const { userId } = useParams(); // /user-profile/:userId
@@ -58,7 +58,7 @@ const UserProfile = () => {
 
   //사용자가 생성, 저장한 게시물 노출 로직
   useEffect(() => {
-    if (text === "CREATED") {
+    if (text === "생성됨") {
       console.log("여기? text>", text);
       console.log("여기? userId>", userId);
       const createdPinsQuery = userCreatedPinsQuery(userId);
@@ -136,33 +136,33 @@ const UserProfile = () => {
           <div className="text-center mb-7">
             <button
               className={`${
-                activeBtn === "CREATED" ? activeBtnStyles : notActiveBtnStyles
+                activeBtn === "생성됨" ? activeBtnStyles : notActiveBtnStyles
               }`}
               type="button"
               onClick={(e) => {
                 console.log("e.target.textContent", e.target.textContent);
                 setText(e.target.textContent);
-                setActiveBtn("CREATED");
+                setActiveBtn("생성됨");
               }}
             >
-              CREATED
+              생성됨
             </button>
             <button
               className={`${
-                activeBtn === "SAVED" ? activeBtnStyles : notActiveBtnStyles
+                activeBtn === "저장됨" ? activeBtnStyles : notActiveBtnStyles
               }`}
               type="button"
               onClick={(e) => {
                 setText(e.target.textContent);
-                setActiveBtn("SAVED");
+                setActiveBtn("저장됨");
               }}
             >
-              SAVED
+              저장됨
             </button>
           </div>
 
           <div className="px-2">
-            {pins ? (
+            {pins?.length ? (
               <MasonryLayout pins={pins} />
             ) : (
               <h2 className="text-center font-bold text-2xl mt-8">
