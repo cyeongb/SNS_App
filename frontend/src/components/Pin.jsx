@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { MdDownloadForOffline, MdDelete } from "react-icons/md";
@@ -27,8 +27,6 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     (item) => item.postedBy._id === userInfo?.googleId
   )?.length;
 
-
-
   // sanity에 게시물 저장하기
   const savePin = (id) => {
     if (!alreadySaved) {
@@ -50,7 +48,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         .commit()
         .then(() => {
           setSavingPost(false);
-           window.location.reload();
+          window.location.reload();
         });
     }
   };
@@ -70,6 +68,9 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     savePin(_id);
   }, [savingPost]);
 
+// 테스트용 로그
+console.log('urlFor(image) ->>',urlFor(image))
+
   return (
     <div className="m-2 ">
       <div
@@ -80,7 +81,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
       >
         <img
           className="rounded-lg w-full"
-          src={urlFor(image).width(250).url()}
+          src={urlFor(image).width(200).url()}
           alt="사용자게시물"
         />
         {postHovered && (

@@ -14,7 +14,9 @@ export const client = sanityClient({
 
 //sanity에서 제공하는 imageUrlBuilder
 const builder = imageUrlBuilder(client);
-export const urlFor = (source) => builder.image(source);
+export const urlFor = (source) => {
+  console.log('urlFor source -->',source)
+  builder.image(source)};
 // export const urlFor = (source) => {
 //   builder.image(source);
 // };
