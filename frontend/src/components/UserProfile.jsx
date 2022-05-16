@@ -33,8 +33,8 @@ const UserProfile = () => {
 
   console.log('userId>>',userId)
   //구글 로그아웃 함수
-  const logoutGoogle = async (response) => {
-    await localStorage
+  const logoutGoogle = (response) => {
+    localStorage
       .clear()
       .then(() => {
         navigate("/login");
