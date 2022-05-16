@@ -135,7 +135,7 @@ const CreatePin = ({ user }) => {
                 <img
                   src={imageAsset?.url}
                   alt="업로드파일"
-                  className="h-auto w-auto min-w-300 min-h-300"
+                  className="h-auto max-w-sm"
                 />
                 <button
                   type="button"
