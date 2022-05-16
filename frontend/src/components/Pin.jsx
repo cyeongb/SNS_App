@@ -11,7 +11,6 @@ const Pin = ({ pin }) => {
   const { postedBy, image, _id, destination, save } = pin;
 
   // console.log("save >", save);
-  console.log("destination >", destination); //ok
 
   const navigate = useNavigate();
 
@@ -19,6 +18,11 @@ const Pin = ({ pin }) => {
   const [savingPost, setSavingPost] = useState(false);
 
   const userInfo = fetchUser();
+
+  const user =
+    localStorage.getItem("user") !== "undefined"
+      ? JSON.parse(localStorage.getItem("user"))
+      : localStorage.clear();
 
   // filter은 return이 []배열임 그래서 length 값으로 return해서
   // not을 두개 붙여줌으로써 length값의 boolean타입을 변수에 넣게 설정.
@@ -57,7 +61,7 @@ const Pin = ({ pin }) => {
 
   //게시물 삭제하기
   const deletePin = (id) => {
-    console.log("delete pin id", id);
+    console.log("delete pin id >", id);
     client
       .delete(id)
       .then(() => {
@@ -69,6 +73,13 @@ const Pin = ({ pin }) => {
   useEffect(() => {
     savePin(_id);
   }, [savingPost]);
+
+  // useEffect(() => {
+  //   let alreadySaved = pin?.save?.filter(
+  //     (item) => item?.postedBy?._id === user?.googleId
+  //   );
+  //   alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
+  // }, [savingPost]);
 
   // 테스트용 로그
   // console.log('urlFor(image) ->>',urlFor(image))  //null
@@ -105,7 +116,7 @@ const Pin = ({ pin }) => {
                 </a>
               </div>
 
-              {alreadySaved.length !==0 ? (
+              {alreadySaved.length !== 0 ? (
                 <button
                   type="button"
                   title="저장됨"

@@ -4,35 +4,41 @@ import { client } from "../client";
 import { feedQuery, searchQuery } from "../utils/data";
 import Spinner from "./Spinner";
 
-const Search = ({ searchTerm, setSearchTerm }) => {
-  const [pins, setPins] = useState("");
+const Search = ({ searchTerm }) => {
+  const [pins, setPins] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (searchTerm) {
-      console.log("searchTerm 있음", searchTerm);
       setLoading(true);
       const query = searchQuery(searchTerm);
-
-      client.fetch(query).then((data) => {
-        setPins(data);
-        setLoading(false);
-      });
+      client
+        .fetch(query)
+        .then((data) => {
+          setPins(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log("searchQuery error >", err);
+        });
     } else {
-      console.log("searchTerm 없음", searchTerm);
-
-      client.fetch(feedQuery).then((data) => {
-        setPins(data);
-        setLoading(false);
-      });
+      client
+        .fetch(feedQuery)
+        .then((data) => {
+          setPins(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log("feedQuery error >", err);
+        });
     }
   }, [searchTerm]);
 
   return (
     <div>
       {loading && <Spinner />}
-      {pins?.length !== 0 && <MasonryLayout pins={pins} />}
-      {pins.length !== 0 && searchTerm !== "" && !loading && (
+      {pins && <MasonryLayout pins={pins} />}
+      {pins?.length === 0 && searchTerm !== "" && !loading && (
         <div className="mt-10 text-center text-xl">검색 결과가 없습니다.</div>
       )}
     </div>

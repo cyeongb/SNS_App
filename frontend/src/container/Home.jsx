@@ -21,12 +21,9 @@ const Home = () => {
 
   // userinfo를 새로 생성하기위한 함수, 그래서 만약 user가 localstorage에 남아있으면 clear해 준다.
   const userInfo = fetchUser();
-  // console.log("userInfo", userInfo);
 
   //sanity data 불러오기
   useEffect(() => {
-    // console.log("client >>", client);
-
     const query = userQuery(userInfo?.googleId);
     client.fetch(query).then((data) => {
       setUser(data[0]);
@@ -39,11 +36,7 @@ const Home = () => {
     scrollRef.current.scrollTo(0, 0);
   }, []);
 
-  // if (!user) {
-  //   navigate("/login");
-  //   return <Spinner />;
-  // }
-
+ 
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out ">
       <div className="hidden md:flex h-screen flex-initial">

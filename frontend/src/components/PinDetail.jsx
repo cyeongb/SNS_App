@@ -18,7 +18,7 @@ const PinDetail = ({ user }) => {
 
   // 특정 id에 접근하기 - 특정 parameter를 useParams로 fetch해 와서 사용할 수 있음
   const { pinId } = useParams();
-  console.log('pinId >>',pinId)
+  // console.log('pinId >>',pinId)
 
   //게시물 상세 데이터 가져오기
   const fetchPinDetail = () => {

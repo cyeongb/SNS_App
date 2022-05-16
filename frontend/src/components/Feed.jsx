@@ -12,9 +12,8 @@ const Feed = () => {
   const { categoryId } = useParams(); // url 파라미터값을 여기에 저장한다.
 
   useEffect(() => {
-    // console.log("categoryId::", categoryId);
+    setLoading(true);
     if (categoryId) {
-      setLoading(true);
       // categoryId(=searchTerm) 로 각 게시물 데이터를 불러온다.
       const query = searchQuery(categoryId);
       client.fetch(query).then((data) => {
@@ -22,7 +21,7 @@ const Feed = () => {
         setLoading(false);
       });
     } else {
-      setLoading(true);
+      // setLoading(true);
       client.fetch(feedQuery).then((data) => {
         console.log('data >>',data)
         setPins(data); // 게시물 set

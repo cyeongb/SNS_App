@@ -57,7 +57,7 @@ export const categories = [
   },
 ];
 
-//사용자 데이터 불러오는 쿼리 함수
+//사용자 데이터 불러오는  **사용자 쿼리 
 export const userQuery = (userId) => {
   const query = `*[_type =="user" && _id == '${userId}']`;
 
@@ -66,34 +66,34 @@ export const userQuery = (userId) => {
 
 //게시물 검색에 사용하는 검색 쿼리
 
-//categoryId로 검색
+//categoryId로 검색하는  **검색쿼리
 export const searchQuery = (searchTerm) => {
-  const query = `*[_type =="pin" && title match '${searchTerm}*' || category match '${searchTerm}*'|| about match '${searchTerm}*']{
-    image{
-      assets ->{
-        url
-      } 
-    },
-    _id,
-    destination,
-    postedBy ->{
-      _id,
-      userName,
-      image
-    },
-    save[]{
-      _key,
-      postedBy->{
-        _id,
-        userName,
-        image
-      },
-    },
-  }`;
+  const query = `*[_type == "pin" && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*']{
+        image{
+          asset->{
+            url
+          }
+        },
+            _id,
+            destination,
+            postedBy->{
+              _id,
+              userName,
+              image
+            },
+            save[]{
+              _key,
+              postedBy->{
+                _id,
+                userName,
+                image
+              },
+            },
+          }`;
   return query;
 };
 
-// pin 게시물을 가져와서 생성일 기준 내림차순 정렬 검색
+// pin 게시물을 가져와서 생성일 기준 내림차순 정렬 검색 **게시물 나열 쿼리
 export const feedQuery = `*[_type == "pin"] | order(_createdAt desc){
   image{
     asset->{
@@ -117,7 +117,7 @@ export const feedQuery = `*[_type == "pin"] | order(_createdAt desc){
       },
     }`;
 
-//게시물이 없을 때
+// **게시물 상세 쿼리
 export const pinDetailQuery = (pinId) => {
   const query = `*[_type == "pin" && _id == '${pinId}']{
         image{
@@ -155,7 +155,7 @@ export const pinDetailQuery = (pinId) => {
   return query;
 };
 
-//게시물이 존재할때
+//게시물이 존재할때 **게시물 상세 쿼리
 export const pinDetailMorePinQuery = (pin) => {
   const query = `*[_type == "pin" && category == '${pin.category}' && _id != '${pin._id}' ]{
         image{
@@ -182,6 +182,7 @@ export const pinDetailMorePinQuery = (pin) => {
   return query;
 };
 
+// 
 export const userCreatedPinsQuery = (userId) => {
   const query = `*[_type == "pin" && useId == '${userId}'] | order(_createdAt desc){
     image{
