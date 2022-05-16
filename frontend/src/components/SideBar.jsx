@@ -49,7 +49,7 @@ const SideBar = ({ user, closeToggle }) => {
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">카테고리</h3>
           {categories.slice(0, categories.length).map((category) => (
             <NavLink
-              to={`/category/${category.id}`}
+              to={`/category/${category?.name}`}
               className={({ isActive }) =>
                 isActive ? isActiveStyle : isNotActiveStyle
               }
@@ -71,7 +71,7 @@ const SideBar = ({ user, closeToggle }) => {
           onClick={handleCloseSidebar}
         >
           <img
-            src={user?.image}
+            src={user.image}
             alt="사용자프로필"
             className="w-9 h-9 rounded-full p-1 m-1"
           />
