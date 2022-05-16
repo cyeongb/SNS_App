@@ -83,15 +83,15 @@ const CreatePin = ({ user }) => {
         .create(doc)
         .then(() => {
           navigate("/");
-          window.location.reload();
+          // window.location.reload();
         })
         .catch((error) => console.log(error));
     } else {
       //항목이 다 안채워졌기 때문에 fields를 true로,
       setFields(true);
-      // setTimeout(() => {
-      //   setFields(false);
-      // }, 3000);
+      setTimeout(() => {
+        setFields(false);
+      }, 2000);
     }
   };
 

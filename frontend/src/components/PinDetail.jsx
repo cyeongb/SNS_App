@@ -123,7 +123,7 @@ const PinDetail = ({ user }) => {
           >
             <img
               className="w-8 h-8 rounded-full"
-              src={pinDetail.postedBy?.image}
+              src={pinDetail?.postedBy?.image}
               alt="사용자프로필"
               title={pinDetail.postedBy?.userName}
             />

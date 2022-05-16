@@ -33,6 +33,11 @@ const Pin = ({ pin }) => {
     (item) => item.postedBy._id === userInfo?.googleId
   )?.length;
 
+  
+  // let alreadySaved = pin?.save?.filter((item) => item?.postedBy?._id === user?.googleId);
+
+  // alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
+
   // sanity에 게시물 저장하기
   const savePin = (id) => {
     if (!alreadySaved) {
