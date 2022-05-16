@@ -13,8 +13,8 @@ const Feed = () => {
 
   useEffect(() => {
     // console.log("categoryId::", categoryId);
-    setLoading(true);
     if (categoryId) {
+      setLoading(true);
       // categoryId(=searchTerm) 로 각 게시물 데이터를 불러온다.
       const query = searchQuery(categoryId);
       client.fetch(query).then((data) => {
@@ -22,16 +22,19 @@ const Feed = () => {
         setLoading(false);
       });
     } else {
+      setLoading(true);
       client.fetch(feedQuery).then((data) => {
+        console.log('data >>',data)
         setPins(data); // 게시물 set
         setLoading(false);
       });
     }
   }, [categoryId]);
 
+
   if (loading) return <Spinner />;
 
-  if (!pins?.length) {
+  if (!pins) {
     return <h2 className="text-gray-500 font-bold text-center">게시물이 없습니다.</h2>;
   }
 

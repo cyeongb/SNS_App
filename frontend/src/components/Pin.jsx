@@ -7,9 +7,11 @@ import { FaHeart } from "react-icons/fa";
 import { client, urlFor } from "../client";
 import { fetchUser } from "../utils/fetchUser";
 
-const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
+const Pin = ({ pin }) => {
+  const { postedBy, image, _id, destination, save } = pin;
+
   // console.log("save >", save);
-  // console.log("image >", image);
+  console.log("destination >", destination); //ok
 
   const navigate = useNavigate();
 
@@ -68,8 +70,8 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     savePin(_id);
   }, [savingPost]);
 
-// 테스트용 로그
-console.log('urlFor(image) ->>',urlFor(image))
+  // 테스트용 로그
+  // console.log('urlFor(image) ->>',urlFor(image))  //null
 
   return (
     <div className="m-2 ">
@@ -81,7 +83,7 @@ console.log('urlFor(image) ->>',urlFor(image))
       >
         <img
           className="rounded-lg w-full"
-          src={urlFor(image).width(200).url()}
+          src={urlFor(image)?.width(250)?.url()}
           alt="사용자게시물"
         />
         {postHovered && (
@@ -103,13 +105,13 @@ console.log('urlFor(image) ->>',urlFor(image))
                 </a>
               </div>
 
-              {alreadySaved ? (
+              {alreadySaved.length !==0 ? (
                 <button
                   type="button"
                   title="저장됨"
                   className="bg-purple-500/70 hover:bg-purple-600/70  opacity-60 hover:cursor-default hover:opacity-100 text-white font-bold p-2 py-3 text-lg rounded-3xl hover:shadow-md outlined-none hover:transition-all duration-300 ease-in"
                 >
-                  {save?.length} <FaHeart />
+                  {pin?.save?.length} <FaHeart />
                 </button>
               ) : (
                 <button

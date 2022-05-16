@@ -94,7 +94,7 @@ export const searchQuery = (searchTerm) => {
 };
 
 // pin 게시물을 가져와서 생성일 기준 내림차순 정렬 검색
-export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
+export const feedQuery = `*[_type == "pin"] | order(_createdAt desc){
   image{
     asset->{
       url
@@ -115,7 +115,7 @@ export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
           image
         },
       },
-    } `;
+    }`;
 
 //게시물이 없을 때
 export const pinDetailQuery = (pinId) => {

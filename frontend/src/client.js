@@ -9,14 +9,12 @@ export const client = sanityClient({
   apiVersion: "2022-04-15",
   useCdn: true,
   token: process.env.REACT_APP_SANITY_TOKEN_EDITOR,
-  ignoreBrowserTokenWarning: true,
+  // ignoreBrowserTokenWarning: true,
 });
 
 //sanity에서 제공하는 imageUrlBuilder
 const builder = imageUrlBuilder(client);
-export const urlFor = (source) => {
-  console.log('urlFor source -->',source)
-  builder.image(source)};
+export const urlFor = (source) => builder.image(source);
 // export const urlFor = (source) => {
 //   builder.image(source);
 // };

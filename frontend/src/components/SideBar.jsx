@@ -54,7 +54,7 @@ const SideBar = ({ user, closeToggle }) => {
                 isActive ? isActiveStyle : isNotActiveStyle
               }
               onClick={handleCloseSidebar}
-              key={category.id}
+              key={category.name}
             >
               {category.name}
              

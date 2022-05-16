@@ -31,6 +31,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const { userId } = useParams(); // /user-profile/:userId
 
+  console.log('userId>>',userId)
   //구글 로그아웃 함수
   const logoutGoogle = async (response) => {
     await localStorage
@@ -41,15 +42,13 @@ const UserProfile = () => {
       .catch((error) => console.log("logoutGoogle error >", error));
   };
 
+  //사용자 정보 가져오기
   useEffect(() => {
-    //사용자 정보 가져오기
     const query = userQuery(userId);
     client
       .fetch(query)
       .then((data) => {
-        setUser(data);
-        console.log("user >>", user);
-        // console.log("user image>>", user[0]);
+        setUser(data[0]);
       })
       .catch((err) => {
         console.log("user fetch error >>", err);
@@ -59,8 +58,8 @@ const UserProfile = () => {
   //사용자가 생성, 저장한 게시물 노출 로직
   useEffect(() => {
     if (text === "생성됨") {
-      console.log("여기? text>", text);
-      console.log("여기? userId>", userId);
+      console.log("여기! text>", text);
+      console.log("여기! userId>", userId);
       const createdPinsQuery = userCreatedPinsQuery(userId);
 
       client
@@ -92,6 +91,7 @@ const UserProfile = () => {
   if (!user) {
     return <Spinner />;
   }
+  console.log('user>>',user)
 
   return (
     <div className="relative pb-2 h-full justify-center items-center">
@@ -104,15 +104,15 @@ const UserProfile = () => {
               className="w-full h-370 2xl:h-510 shadow-lg object-cover "
             />
             <img
-              src={user[0].image}
+              src={user?.image}
               alt="프로필이미지"
               className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
             />
             <h1 className="font-bold text-3xl text-center mt-3">
-              {user[0].userName}
+              {user.userName}
             </h1>
             <div className="absolute top-0 z-1 right-0 p-2">
-              {userId === user[0]._id && (
+              {userId === user._id && (
                 <GoogleLogout
                   clientId={`${process.env.REACT_APP_CLIENT_ID}`}
                   render={(renderProps) => (
