@@ -11,15 +11,13 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUser();
-    if (!userInfo) {
-      navigate("/");
-    }
+    if (!userInfo) navigate("/login");
   }, []);
 
   return (
     <Routes>
-      <Route path="/*" element={userInfo ? <Home /> : <Login />} />
+      {/* <Route path="/*" element={userInfo ? <Home /> : <Login />} /> */}
+      <Route path="/*" element={<Home />} />
       <Route path="login" element={<Login />} />
     </Routes>
   );
