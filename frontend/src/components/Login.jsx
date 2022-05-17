@@ -14,8 +14,8 @@ const Login = () => {
   // url 조작할 수 있는 navigate() 선언
   const navigate = useNavigate();
 
-  const responseGoogle = async (response) => {
-    await localStorage.setItem("user", JSON.stringify(response.profileObj));
+  const responseGoogle = (response) => {
+    localStorage.setItem("user", JSON.stringify(response.profileObj));
     const { name, googleId, imageUrl } = response.profileObj; // 여기서 막힘
     const doc = {
       _id: googleId,

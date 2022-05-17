@@ -105,10 +105,10 @@ const UserProfile = () => {
               className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
             />
             <h1 className="font-bold text-3xl text-center mt-3">
-              {user.userName}
+              {user?.userName}
             </h1>
             <div className="absolute top-0 z-1 right-0 p-2">
-              {userId === user._id && (
+              {userId === user?._id && (
                 <GoogleLogout
                   clientId={`${process.env.REACT_APP_CLIENT_ID}`}
                   render={(renderProps) => (

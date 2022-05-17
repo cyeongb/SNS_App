@@ -66,16 +66,16 @@ const SideBar = ({ user, closeToggle }) => {
       {/* user 체크 user있으면 개인 페이지로 */}
       {user && (
         <Link
-          to={`user-profile/${user._id}`}
+          to={`user-profile/${user?._id}`}
           className="flex my-5 mb-3 gap-4 items-center bg-white rounded-lg shadow-lg mx-3 hover:bg-gray-100 transition-all duration-300 ease-in"
           onClick={handleCloseSidebar}
         >
           <img
-            src={user.image}
+            src={user?.image}
             alt="사용자프로필"
             className="w-9 h-9 rounded-full p-1 m-1"
           />
-          <p className="text-xs text-gray-500">{user.userName}</p>
+          <p className="text-xs text-gray-500">{user?.userName}</p>
         </Link>
       )}
     </div>

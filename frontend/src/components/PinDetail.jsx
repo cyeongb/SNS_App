@@ -153,14 +153,14 @@ const PinDetail = ({ user }) => {
           </div>
           <div className="flex flex-wrap mt-6 gap-3">
             <Link
-              to={`user-profile/${pinDetail.postedBy?._id}`}
+              to={`user-profile/${pinDetail?.postedBy?._id}`}
               className="flex gap-2 mt-5 items-center bg-white rounded-lg"
             >
               <img
                 className="w-9 h-9 rounded-full cursor-pointer mb-4"
-                src={pinDetail.postedBy?.image}
+                src={pinDetail?.postedBy?.image}
                 alt="사용자프로필"
-                title={pinDetail.postedBy?.userName}
+                title={pinDetail?.postedBy?.userName}
               />
             </Link>
             <input
