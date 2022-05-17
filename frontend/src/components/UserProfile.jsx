@@ -31,15 +31,11 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const { userId } = useParams(); // /user-profile/:userId
 
-  console.log('userId>>',userId)
+  console.log("userId>>", userId);
   //구글 로그아웃 함수
   const logoutGoogle = (response) => {
-    localStorage
-      .clear()
-      .then(() => {
-        navigate("/login");
-      })
-      .catch((error) => console.log("logoutGoogle error >", error));
+    localStorage.clear();
+    navigate("/login");
   };
 
   //사용자 정보 가져오기
@@ -91,7 +87,7 @@ const UserProfile = () => {
   if (!user) {
     return <Spinner />;
   }
-  console.log('user>>',user)
+  console.log("user>>", user);
 
   return (
     <div className="relative pb-2 h-full justify-center items-center">
