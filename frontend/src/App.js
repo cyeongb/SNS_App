@@ -8,9 +8,14 @@ import { useEffect } from "react";
 const App = () => {
   const userInfo = fetchUser();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetchUser();
-  }, [userInfo]);
+    if (!userInfo) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Routes>

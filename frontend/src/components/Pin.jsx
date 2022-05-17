@@ -160,7 +160,7 @@ const Pin = ({ pin }) => {
                 </a>
               )}
 
-              {postedBy?._id === userInfo.googleId && (
+              {postedBy?._id === userInfo?.googleId && (
                 <button
                   type="button"
                   title="삭제하기"
